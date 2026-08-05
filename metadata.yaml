@@ -1,7 +1,0 @@
-name: astrbot_plugin_lie_detector
-display_name: 测谎仪
-desc: 测谎仪插件 - 分析消息可信度，支持LLM和规则双引擎，带WebUI管理面板
-short_desc: 回复消息并查证，AI分析可信度，支持WebUI管理面板
-version: 2.0.0
-author: AstrBot Community
-repo: ""
