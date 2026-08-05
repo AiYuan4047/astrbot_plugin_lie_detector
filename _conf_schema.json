@@ -1,0 +1,183 @@
+{
+  "enable_llm": {
+    "description": "启用LLM分析",
+    "type": "bool",
+    "default": true,
+    "hint": "开启后使用大模型分析消息可信度，关闭则使用内置规则引擎"
+  },
+  "llm_provider_id": {
+    "description": "LLM模型提供商",
+    "type": "string",
+    "default": "",
+    "hint": "选择要使用的模型提供商，留空则使用当前会话默认的提供商",
+    "_special": "select_provider"
+  },
+  "prompt_template": {
+    "description": "LLM提示词模板",
+    "type": "text",
+    "default": "你是一个专业的查证专家。请分析以下发言的可信度，并给出0-100的评分。\n\n发言内容：{message}\n\n请严格按照以下格式输出，不要添加任何额外内容：\n评分：[0-100的整数]\n结论：[可信/基本可信/存疑/可疑/虚假]\n理由：[简短的分析理由，不超过30字]",
+    "hint": "{message}会被替换为被查证的消息内容"
+  },
+  "rule_base_score": {
+    "description": "规则引擎-基础分",
+    "type": "int",
+    "default": 50,
+    "hint": "规则引擎分析时的起始分数（0-100）"
+  },
+  "rule_detail_bonus": {
+    "description": "规则引擎-细节加分",
+    "type": "int",
+    "default": 6,
+    "hint": "每个细节特征（数字、时间、地点）的加分值"
+  },
+  "rule_length_optimal_min": {
+    "description": "规则引擎-最佳长度下限",
+    "type": "int",
+    "default": 10,
+    "hint": "消息长度在此范围内加分"
+  },
+  "rule_length_optimal_max": {
+    "description": "规则引擎-最佳长度上限",
+    "type": "int",
+    "default": 80,
+    "hint": "消息长度在此范围内加分"
+  },
+  "rule_length_optimal_bonus": {
+    "description": "规则引擎-长度适中加分",
+    "type": "int",
+    "default": 15
+  },
+  "rule_absurd_penalty": {
+    "description": "规则引擎-夸张词扣分",
+    "type": "int",
+    "default": 20,
+    "hint": "每个反常识/夸张词的扣分值"
+  },
+  "rule_absolute_penalty": {
+    "description": "规则引擎-绝对词扣分",
+    "type": "int",
+    "default": 10,
+    "hint": "每个绝对化表述的扣分值"
+  },
+  "rule_vague_penalty": {
+    "description": "规则引擎-模糊词扣分",
+    "type": "int",
+    "default": 10,
+    "hint": "每个模糊表述的扣分值"
+  },
+  "rule_emotion_bonus": {
+    "description": "规则引擎-情感符号加分",
+    "type": "int",
+    "default": 5
+  },
+  "show_history_avg": {
+    "description": "显示历史平均分",
+    "type": "bool",
+    "default": true,
+    "hint": "在查证结果中显示被查证用户的历史平均可信度"
+  },
+  "ranking_limit": {
+    "description": "排行榜显示人数",
+    "type": "int",
+    "default": 20
+  },
+  "admin_only": {
+    "description": "仅管理员可用",
+    "type": "bool",
+    "default": false,
+    "hint": "开启后普通用户无法使用查证指令，管理员不受限制"
+  },
+  "daily_limit_per_user": {
+    "description": "每日查证次数限制",
+    "type": "int",
+    "default": 0,
+    "hint": "每位用户每天可查证次数，0表示不限制"
+  },
+  "min_message_length": {
+    "description": "消息最小长度",
+    "type": "int",
+    "default": 2,
+    "hint": "被查证消息少于该长度则提示过短"
+  },
+  "store_history": {
+    "description": "存储历史记录",
+    "type": "bool",
+    "default": true,
+    "hint": "是否存储详细查证历史记录到数据库"
+  },
+  "history_retention_days": {
+    "description": "历史记录保留天数",
+    "type": "int",
+    "default": 30,
+    "hint": "超过该天数的历史记录将被自动清理，0为永久保留"
+  },
+  "show_reason": {
+    "description": "显示分析理由",
+    "type": "bool",
+    "default": true,
+    "hint": "在查证结果中显示详细分析理由"
+  },
+  "show_icon": {
+    "description": "显示等级图标",
+    "type": "bool",
+    "default": true,
+    "hint": "在结果中显示等级图标（🟢🟡🟠🔴💀）"
+  },
+  "threshold_credible": {
+    "description": "阈值-可信",
+    "type": "int",
+    "default": 80,
+    "hint": "分数≥该值为「可信」"
+  },
+  "threshold_reliable": {
+    "description": "阈值-基本可信",
+    "type": "int",
+    "default": 60
+  },
+  "threshold_doubtful": {
+    "description": "阈值-存疑",
+    "type": "int",
+    "default": 40
+  },
+  "threshold_suspicious": {
+    "description": "阈值-可疑",
+    "type": "int",
+    "default": 20
+  },
+  "threshold_false": {
+    "description": "阈值-虚假",
+    "type": "int",
+    "default": 0
+  },
+  "level_name_credible": {
+    "description": "等级名称-可信",
+    "type": "string",
+    "default": "可信"
+  },
+  "level_name_reliable": {
+    "description": "等级名称-基本可信",
+    "type": "string",
+    "default": "基本可信"
+  },
+  "level_name_doubtful": {
+    "description": "等级名称-存疑",
+    "type": "string",
+    "default": "存疑"
+  },
+  "level_name_suspicious": {
+    "description": "等级名称-可疑",
+    "type": "string",
+    "default": "可疑"
+  },
+  "level_name_false": {
+    "description": "等级名称-虚假",
+    "type": "string",
+    "default": "虚假"
+  },
+  "violation_alert_group": {
+    "description": "违规警报群",
+    "type": "string",
+    "default": "",
+    "hint": "检测到违规内容时向该群发送警报，留空则不发送"
+  }
+}
