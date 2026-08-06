@@ -3,5 +3,5 @@ display_name: 查证器
 desc: 查证器插件 - 分析消息可信度，支持LLM和规则双引擎，带WebUI管理面板
 short_desc: 回复消息并查证，AI分析可信度，支持WebUI管理面板
 version: 3.0.0
-author: AstrBot Community
+author: AiYuan4047
 repo: ""
